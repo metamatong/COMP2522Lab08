@@ -17,7 +17,7 @@ public class CountryLab
         final Path inputFile;
         inputFile = Paths.get("src", "resources", "week8countries.txt");
         final Path matchesDir;
-        matchesDir = Paths.get("src", "resource", "matches");
+        matchesDir = Paths.get("matches");
         final Path dataFile;
         dataFile = matchesDir.resolve("data.txt");
 
