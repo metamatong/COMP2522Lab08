@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
  * Demonstrates streaming operations and NIO.
  *
  * @author colecampbell
+ * @author kyle cheon
  * @version 1.0
  */
 public class CountryLab
@@ -19,7 +20,7 @@ public class CountryLab
 
         try
         {
-            if (!Files.exists(matchesDir))
+            if(!Files.exists(matchesDir))
             {
                 Files.createDirectory(matchesDir);
             }
@@ -107,7 +108,8 @@ public class CountryLab
 
             Files.write(dataFile, output.getBytes());
 
-        } catch (IOException e)
+        }
+        catch(final IOException e)
         {
             e.printStackTrace();
         }

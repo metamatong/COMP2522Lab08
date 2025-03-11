@@ -4,20 +4,21 @@ import java.nio.file.*;
 import java.io.IOException;
 import java.util.List;
 
-public class CountryLabTest {
-
+public class CountryLabTest
+{
     Path matchesDir = Paths.get("matches");
     Path dataFile = matchesDir.resolve("data.txt");
 
     @BeforeEach
-    public void setUp() throws IOException {
+    public void setUp() throws IOException
+    {
         // Clean up before running each test
-        if (Files.exists(dataFile))
+        if(Files.exists(dataFile))
 		{			
 			Files.delete(dataFile);
 		}
 		
-        if (Files.exists(matchesDir)) 
+        if(Files.exists(matchesDir))
 		{
 			Files.delete(matchesDir);
 		}
@@ -26,17 +27,20 @@ public class CountryLabTest {
     }
 
     @Test
-    public void testDirectoryCreation() {
+    public void testDirectoryCreation()
+    {
         assertTrue(Files.exists(matchesDir), "matches directory should be created");
     }
 
     @Test
-    public void testDataFileCreation() {
+    public void testDataFileCreation()
+    {
         assertTrue(Files.exists(dataFile), "data.txt file should be created");
     }
 
     @Test
-    public void testCountryNamesLongerThan10Characters() throws IOException {
+    public void testCountryNamesLongerThan10Characters() throws IOException
+    {
         List<String> lines = Files.readAllLines(dataFile);
         String expectedHeader = "Country names longer than 10 characters:";
         assertTrue(lines.contains(expectedHeader), "Header for long country names should be present");
@@ -46,7 +50,8 @@ public class CountryLabTest {
     }
 
     @Test
-    public void testCountryNamesStartingWithA() throws IOException {
+    public void testCountryNamesStartingWithA() throws IOException
+    {
         List<String> lines = Files.readAllLines(dataFile);
         String expectedHeader = "Country names starting with 'A':";
         assertTrue(lines.contains(expectedHeader), "Header for countries starting with 'A' should be present");
@@ -56,7 +61,8 @@ public class CountryLabTest {
     }
 
     @AfterEach
-    public void tearDown() throws IOException {
+    public void tearDown() throws IOException
+    {
         // Clean up after tests
         Files.deleteIfExists(dataFile);
         Files.deleteIfExists(matchesDir);
