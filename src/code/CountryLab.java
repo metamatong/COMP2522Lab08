@@ -126,7 +126,7 @@ public class CountryLab
                      "Any country name starts with 'Z': " + anyStartsWithZ + "\n\n" +
                      "All country names longer than 3 characters: " + allLongerThanThree + "\n\n";
 
-            Files.write(dataFile, output.getBytes());
+            Files.write(dataFile, output.getBytes(), StandardOpenOption.CREATE);
 
         }
         catch(final IOException e)
