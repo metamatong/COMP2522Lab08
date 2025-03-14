@@ -31,80 +31,85 @@ public class CountryLab
             final List<String> countries;
             countries = Files.readAllLines(inputFile);
 
+            final List<String> trimmedCountries;
+            trimmedCountries = countries.stream()
+                    .map(String::trim)
+                    .toList();
+
             final List<String> longNames;
-            longNames = countries.stream()
+            longNames = trimmedCountries.stream()
                                     .filter(c -> c.length() > 10)
                                     .toList();
 
             final List<String> shortNames;
-            shortNames = countries.stream()
+            shortNames = trimmedCountries.stream()
                                     .filter(c -> c.length() < 5)
                                     .toList();
 
             final List<String> startsWithA;
-            startsWithA = countries.stream()
+            startsWithA = trimmedCountries.stream()
                                     .filter(c -> c.startsWith("A"))
                                     .toList();
 
             final List<String> endsWithLand;
-            endsWithLand = countries.stream()
-                                        .filter(c -> c.endsWith("land"))
-                                        .toList();
+            endsWithLand = trimmedCountries.stream()
+                                    .filter(c -> c.toLowerCase().endsWith("land"))
+                                    .toList();
 
             final List<String> containsUnited;
-            containsUnited = countries.stream()
-                                        .filter(c -> c.contains("United"))
+            containsUnited = trimmedCountries.stream()
+                                        .filter(c -> c.toLowerCase().contains("united"))
                                         .toList();
 
             final List<String> sortedAscending;
-            sortedAscending = countries.stream()
+            sortedAscending = trimmedCountries.stream()
                                         .sorted()
                                         .toList();
 
             final List<String> sortedDescending;
-            sortedDescending = countries.stream()
+            sortedDescending = trimmedCountries.stream()
                                         .sorted(Comparator.reverseOrder())
                                         .toList();
 
             final Set<Character> uniqueFirstLetters;
-            uniqueFirstLetters = countries.stream()
+            uniqueFirstLetters = trimmedCountries.stream()
                                             .map(c -> c.charAt(0))
                                             .collect(Collectors.toSet());
 
             final long countCountries;
-            countCountries = countries.size();
+            countCountries = trimmedCountries.size();
 
             final String longestCountry;
-            longestCountry = countries.stream()
+            longestCountry = trimmedCountries.stream()
                                         .max(Comparator.comparingInt(String::length))
                                         .orElse("None");
 
             final String shortestCountry;
-            shortestCountry = countries.stream()
+            shortestCountry = trimmedCountries.stream()
                                         .min(Comparator.comparingInt(String::length))
                                         .orElse("None");
 
             final List<String> uppercaseCountries;
-            uppercaseCountries = countries.stream()
+            uppercaseCountries = trimmedCountries.stream()
                                             .map(String::toUpperCase)
                                             .toList();
 
             final List<String> multipleWordCountries;
-            multipleWordCountries = countries.stream()
+            multipleWordCountries = trimmedCountries.stream()
                                                 .filter(c -> c.contains(" "))
                                                 .toList();
 
             final List<String> nameToCharCount;
-            nameToCharCount = countries.stream()
+            nameToCharCount = trimmedCountries.stream()
                                         .map(c -> c + ": " + c.length() + " characters")
                                         .toList();
 
             final boolean anyStartsWithZ;
-            anyStartsWithZ = countries.stream()
+            anyStartsWithZ = trimmedCountries.stream()
                                         .anyMatch(c -> c.startsWith("Z"));
 
             final boolean allLongerThanThree;
-            allLongerThanThree = countries.stream()
+            allLongerThanThree = trimmedCountries.stream()
                                             .allMatch(c -> c.length() > 3);
 
             final String output;
@@ -134,5 +139,7 @@ public class CountryLab
             e.printStackTrace();
         }
     }
+
+
 }
 
